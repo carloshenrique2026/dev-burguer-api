@@ -3,4 +3,4 @@
 <P>Instalando Biome.js </p>
 <P>Criando Container com Docker</P>
 <p>Configurando Sequelize e criando a Primeira Migration</p>
-<p>
+<p>formataçao</p>
