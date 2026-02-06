@@ -5,6 +5,18 @@ class UserController {
     async store(request, response){
        const { name, email, password_hash, admin } = request.body;
 
+       const existingUser = User.findOne({
+        where: {
+            email,
+        },
+       });
+
+       if (existingUser) {
+        return response
+        .status(400)
+        .json({ message:  'Este e-mail já esta cadastrado!' })
+       }
+
         const user = await User.create({
             id: v4(),
             name,
