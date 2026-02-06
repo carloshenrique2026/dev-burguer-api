@@ -5,7 +5,7 @@ class UserController {
     async store(request, response){
        const { name, email, password_hash, admin } = request.body;
 
-       const existingUser = User.findOne({
+       const existingUser = await User.findOne({
         where: {
             email,
         },
