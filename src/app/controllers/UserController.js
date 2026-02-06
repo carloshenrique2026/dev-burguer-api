@@ -3,7 +3,6 @@ import User from "../models/User.js";
 
 class UserController {
     async store(request, response){
-        console.log('request', response.body)
        const { name, email, password_hash, admin } = request.body;
 
         const user = await User.create({
