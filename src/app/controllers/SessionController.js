@@ -6,18 +6,22 @@ class SessionController {
     async store(request, response) {
         const schema = Yup.object({
             email: Yup.string().email().required(),
-            password: Yup.string().required(),
+            password: Yup.string().min(6).required(),
         });
 
-        const isValid = await schema.isValid(request.body, { 
+        const isValid = await schema.isValid(request.body, {
             abortEarly: false,
-            strict: true, 
+            strict: true,
         });
 
-        if (!isValid) {
+        const emailOrPasswordIncorrect = () => {
             return response
                 .status(400)
                 .json({ error: 'Email or  password incorrect' });
+        }
+
+        if (!isValid) {
+            emailOrPasswordIncorrect();
         }
 
         const { email, password } = request.body;
@@ -29,14 +33,24 @@ class SessionController {
         });
 
         if (!existingUser) {
-            return response
-                .status(400)
-                .json({ message: 'Email or  password incorrect' });
+            emailOrPasswordIncorrect();
         }
 
-        const isPasswordCorrect = bcrypt.com
+        const isPasswordCorrect = await bcrypt.compare(
+            password,
+            existingUser.password_hash,
+        );
 
-        return response.status(200).json({ ok: true });
+        if (!isPasswordCorrect) {
+            emailOrPasswordIncorrect();
+        }
+
+        return response.status(200).json({
+            id: existingUser.id,
+            name: existingUser.name,
+            email: existingUser.email,
+            admin: existingUser.admin,
+        });
     }
 }
 
