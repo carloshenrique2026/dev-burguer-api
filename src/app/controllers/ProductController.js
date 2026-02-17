@@ -24,9 +24,9 @@ class ProductController {
             category,
             path: filename
         });
+
         return response.status(201).json({ newProduct });
     }
-
 
     async index(_request, response) {
         const products = await Product.findAll()
@@ -34,8 +34,6 @@ class ProductController {
         return response.status(200).json(products)
     }
 }
-
-
 
 export default new ProductController();
 
