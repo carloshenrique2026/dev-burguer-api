@@ -17,7 +17,7 @@
 		"rules": {
 			"recommended": true,
 			"complexity": { 
-				"mothisInStatic": "of"
+				"mothisInStatic": "off"
 			}
 		}
 	},

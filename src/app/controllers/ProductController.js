@@ -33,6 +33,7 @@ class ProductController {
 
         return response.status(200).json(products)
     }
+        
 }
 
 export default new ProductController();
