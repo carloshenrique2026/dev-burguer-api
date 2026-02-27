@@ -12,13 +12,17 @@ const authMiddleware = (request, response, next) => {
 
     try {
         const decoded = jwt.verify(token, authConfig.secret);
-        console.log(decoded)
-        return next();
+
+        
+
+        request.userId = decoded.id;
         
     } catch (error) {
         
-        return response.status(401).json({ error: 'Token inválido ou expirado' });
+        return response.status(401).json({ error: 'Token is invalid' });
     }
+    
+    return next();
 };
 
 export default authMiddleware;
