@@ -2,7 +2,8 @@ import Sequelize, { Model } from "sequelize";
 
 class Category extends Model {
     static init(sequelize) {
-        super.init({
+        super.init(
+            {
                 name: Sequelize.STRING,
             }, 
             {
@@ -10,6 +11,8 @@ class Category extends Model {
                 tableName: 'categories',
             },
         );
+
+        return this;
     }
 }
 
