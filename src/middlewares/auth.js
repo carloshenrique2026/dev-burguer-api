@@ -13,9 +13,8 @@ const authMiddleware = (request, response, next) => {
     try {
         const decoded = jwt.verify(token, authConfig.secret);
 
-        
-
         request.userId = decoded.id;
+        request.userIsAdmin = decoded.admin;
         
     } catch (error) {
         
