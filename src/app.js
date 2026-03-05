@@ -14,6 +14,7 @@ app.use(express.json());
 //H app.use(express.urlencoded({ extended:  true }));
 //Happ.use('/product-file', fileRouteConfig);
 app.use('/product-file', express.static(resolve(__dirname, '..', 'uploads')));
+app.use('/category-file', express.static(resolve(__dirname, '..', 'uploads')));
 
 app.use(routes);
 
