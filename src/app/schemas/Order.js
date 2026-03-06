@@ -2,8 +2,10 @@ import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema({
     user: {
-        id: String,
-        required: true,
+        id: {
+            type: String,
+            required: true,
+        },
     },
     name: {
         type: String,
@@ -34,13 +36,13 @@ const OrderSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-      },
+    },
     ],
-     status: {
+    status: {
         type: String,
         required: true,
-     },
     },
+},
     {
         timestamps: true,
     },
