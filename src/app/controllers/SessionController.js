@@ -19,7 +19,7 @@ class SessionController {
 
         const emailOrPasswordIncorrect = () => {
             return response
-                .status(400)
+                .status(401)
                 .json({ error: 'Email or  password incorrect' });
         }
 

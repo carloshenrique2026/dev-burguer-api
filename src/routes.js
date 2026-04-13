@@ -13,10 +13,11 @@ const routes = new Router();
 
 const upload = multer(multerConfig);
 
-routes.post('/users', UserController.store);
-routes.post('/sessions', SessionController.store);
+routes.post('/users', UserController.store);  // Cadastro
 
-routes.use(authMiddleware);
+routes.post('/sessions', SessionController.store);  // Login
+
+routes.use(authMiddleware);  // será chamado por todas as rotas ABAIXO
 
 routes.post('/products', adminMiddleware, upload.single('file'), ProductController.store);
 routes.put('/products/:id', adminMiddleware, upload.single('file'), ProductController.update);

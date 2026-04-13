@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import authConfig from '../../config/auth.js';
 
 const authMiddleware = (request, response, next) => {
+    console.log('HEADER:', request.headers.authorization);
     const authHeader = request.headers.authorization;
     
     if(!authHeader) {

@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import Category from '../models/category.js';
-
+// USE
 class CategoryController {
     async store(request, response) {
         const schema = Yup.object({
