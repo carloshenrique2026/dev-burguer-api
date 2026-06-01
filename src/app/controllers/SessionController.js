@@ -24,7 +24,7 @@ class SessionController {
         }
 
         if (!isValid) {
-            emailOrPasswordIncorrect();
+            return emailOrPasswordIncorrect();
         }
 
         const { email, password } = request.body;
@@ -36,7 +36,7 @@ class SessionController {
         });
 
         if (!existingUser) {
-            emailOrPasswordIncorrect();
+            return emailOrPasswordIncorrect();
         }
 
         const isPasswordCorrect = await bcrypt.compare(
@@ -45,7 +45,7 @@ class SessionController {
         );
 
         if (!isPasswordCorrect) {
-            emailOrPasswordIncorrect();
+            return emailOrPasswordIncorrect();
         }
 
         const token = jwt.sign(
